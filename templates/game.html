@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+<link href="/static/board.css" rel="stylesheet" type="text/css" />
+
+<div class='page' style='display: none;'>
+    <div class='game-wrapper flex-center'>
+        
+        <div class='flex-stack'>
+
+            <!-- enemy profile -->
+            <div class='profile enemy-profile'>
+                <div style='font-size: 16px; margin-left: 8px;'>send the link to your friend.</div>
+                <button onclick='copy()'>copy to clipboard</button>
+            </div>
+
+            <!-- board wrapper -->
+            <div class='board-wrapper flex-stack'>
+                <div class='flex'>
+
+                    <!-- left coords indicator -->
+                    <div class='b-y-cont'></div>
+
+                    <!-- chess board -->
+                    <div class='board off'>
+
+                        <!-- game over card -->
+                        <div class='gameover flex-stack' style='display: none;'>
+                            <div class='gameover-top flex-stack'>
+                                <div class='won'></div>
+                                <div class='by'></div>
+                            </div>
+                            <button class='rematch' onclick='readyUp()'><i class="fas fa-redo-alt"></i> Rematch</button>
+                            <div class='rematch-count'>0/2</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- bottom coords indicator -->
+                <div class='b-x-cont'></div>
+            </div>
+
+            <!-- your profile -->
+            <div class='profile your-profile'>
+                
+            </div>
+        </div>
+
+        <!-- game info cont -->
+        <div class='info-cont flex-stack' style='height: 647px;'>
+            <div class='info-top'>
+
+                <!-- game state -->
+                <h2 id='state'>Waiting...</h2>
+            </div>
+
+            <div class='info-mid'>
+
+
+
+            </div>
+
+            <div class='info-bottom' style='display: none;'>
+
+                <!-- emotes -->
+                <div class='emotes-cont'>
+                    <div class='emote thumbs' onclick='emote(this);'>
+                        <img src='/static/emotes/thumbs.gif' />
+                    </div>
+                    <div class='emote angry' onclick='emote(this);'>
+                        <img src='/static/emotes/angry.gif' />
+                    </div>
+                    <div class='emote crying' onclick='emote(this);'>
+                        <img src='/static/emotes/crying.gif' />
+                    </div>
+                    <div class='emote laughing' onclick='emote(this);'>
+                        <img src='/static/emotes/laughing.gif' />
+                    </div>
+                </div>
+
+                <!-- phrases -->
+                <div class='phrases-cont'>
+                    <div class='phrase' onclick='msg(this);'>Good luck!</div>
+                    <div class='phrase' onclick='msg(this);'>Well played!</div>
+                    <div class='phrase' onclick='msg(this);'>Wow!</div>
+                    <div class='phrase' onclick='msg(this);'>Thanks!</div>
+                    <div class='phrase' onclick='msg(this);'>Good game!</div>
+                    <div class='phrase' onclick='msg(this);'>Oops</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// var setup
+var gameId = '{{ gameId }}'; // the game id
+var userId = sessionStorage.getItem(gameId) || '{{ userId }}'; // your user id
+
+var countryCode;
+
+// player flag
+$.get("https://api.ipdata.co?api-key={{ ipdataco_api_key }}", function (response) {
+    countryCode = response.country_code;
+}, "jsonp");
+
+// sounds
+var sound = {
+    'start': new Audio('/static/sounds/start.mp3'),
+    'gameover': new Audio('/static/sounds/gameover.mp3'),
+    'move': new Audio('/static/sounds/move.mp3'),
+    'capture': new Audio('/static/sounds/capture.mp3')
+}
+
+</script>
+<script src="/static/board.js"></script>
+<script src="/static/game.js"></script>
+
+</script>
+
+{% endblock %}

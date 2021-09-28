@@ -1,0 +1,89 @@
+/* base styles */
+
+html, body {
+    margin: 0;
+    padding: 10px;
+}
+
+html, body, h1, h2, h3, p, label, body, span, button, input, textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.bg-b {
+    background-color: dodgerblue;
+}
+.bg-r {
+    background-color: red;
+}
+.c-w {
+    color: white;
+}
+.c-b {
+    color: dodgerblue;
+}
+.c-r {
+    color: red;
+}
+
+
+.flex {
+    display: flex;
+}
+.flex-stack {
+    display: flex;
+    flex-direction: column;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.padding-1 {
+    padding: 6px;
+}
+
+
+input[type="text"], textarea, input[type="password"], select {
+    outline: 0;
+    margin: 4px;
+    border: 1px solid #00000010;
+    border-radius: 2px;
+    padding: 6px;
+    font-size: 15px;
+}
+input[type="text"]:focus, textarea:focus, input[type="password"]:focus, select:focus {
+    outline: 2px solid dodgerblue;
+}
+
+
+button {
+    outline: 0;
+    border: 1px solid #00000010;
+    border-radius: 4px;
+    margin: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.8;
+    padding: 5px;
+    user-select: none;
+    background-color: white;
+}
+button:hover {
+    opacity: 1;
+}
+
+p {
+    color: rgb(107 107 107);
+}
+

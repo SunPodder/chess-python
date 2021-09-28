@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Home</h1>
+<div>
+    <button onclick='createGame();'>create game</button>
+</div>
+
+<script>
+
+function createGame() {
+    $.get('/create/', res => {
+        console.log(res)
+        location.pathname = '/game/'+res.res
+    })
+}
+
+</script>
+{% endblock %}

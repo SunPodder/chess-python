@@ -1,0 +1,471 @@
+html, body {
+    padding: 0 !important;
+}
+
+body {
+    background: rgb(94,69,53);
+    background: linear-gradient(156deg, rgba(94,69,53,1) 0%, rgba(161,114,85,1) 100%);
+    overflow: hidden;
+}
+
+.game-wrapper {
+    position: relative;
+    padding: 30px;
+}
+
+/* board */
+.board-wrapper {
+    padding: 30px 30px 0 0;
+    background-color: #4a352769;
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.board {
+    display: grid;
+    height: 480px;
+    width: 480px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 1fr;
+    position: relative;
+    user-select: none !important;
+}
+.board.off {
+    cursor: not-allowed !important;
+}
+.board.off .piece {
+    pointer-events: none;
+    cursor: not-allowed !important;
+}
+
+.b-y-cont {
+    width: 30px;
+    height: 100%;
+    display: grid;
+
+    grid-template-columns: repeat(8, 1fr);
+    grid-auto-rows: 1fr;
+}
+.b-x-cont {
+    width: 100%;
+    height: 30px;
+    display: grid;
+
+    grid-template-rows: repeat(8, 1fr);
+    grid-auto-rows: 1fr;
+}
+
+
+/* squares */
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+.square.last-move {
+    background-color: #88ff96d6 !important;
+}
+.square.target {
+    background-color: #ffff5de8 !important;
+}
+.square.bad-move {
+    background-color: #ff4343db !important;
+}
+
+/* light squares on board */
+.light {
+    background-color: bisque;
+    color: black;
+}
+/* dark squares on board */
+.dark {
+    background-color: #b37b59;
+    color: white;
+}
+
+/* pieces*/
+.black {
+    color: black !important;
+}
+.black .fas {
+    text-shadow: 0 0 2px white;
+}
+.white {
+    color: white !important;
+}
+.white .fas {
+    text-shadow: 0 0 2px black;
+}
+
+.pos {
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    pointer-events: none;
+}
+
+.piece {
+    cursor: grab;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.piece.enemy {
+    pointer-events: none !important;
+}
+.piece.selected {
+    color: yellow !important;
+}
+
+/* game info styles */
+.info-cont {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-left: 15px;
+    color: #ffffff85;
+}
+
+.info-top {
+    padding: 20px;
+    background-color: rgb(0 0 0 / 21%);
+    flex-shrink: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.info-mid {
+    padding: 20px;
+    background-color: rgb(0 0 0 / 14%);
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+.note {
+    height: fit-content;
+    padding: 4px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+.note-cnt {
+    width: fit-content;
+}
+.info-mid .note:nth-child(odd) {
+    background-color: #8080804f;
+}
+.info-mid::-webkit-scrollbar {
+    display: none;
+}
+
+.info-bottom {
+    padding: 10px;
+    background-color: rgb(0 0 0 / 21%);
+    flex-shrink: 0;
+    height: 160px;
+}
+
+
+
+/* indicator for available moves */
+.indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    background-color: #0000001c;
+    pointer-events: none;
+    display: none;
+}
+.square.show-move .indicator {
+    display: block;
+}
+.square.show-move {
+    cursor: pointer;
+}
+
+
+
+/* profile */
+.profile {
+    color: #ffffff85;
+    display: flex;
+    font-size: 20px;
+    height: 42px;
+    padding: 4px;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+}
+.profile-name {
+    margin: 0 10px;
+}
+.profile img {
+    height: 30px;
+    width: auto;
+}
+
+
+
+/* mobile styles */
+.mobile .game-wrapper {
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+
+.mobile .info-cont {
+    margin-left: 0;
+    height: fit-content !important;
+    width: 100% !important;
+    max-width: unset !important;
+    min-width: unset !important;
+}
+.mobile .info-top {
+    height: 50px !important;
+    padding: 10px !important;
+    width: calc(100% - 20px);
+}
+.mobile .info-mid {
+    display: none;
+}
+.mobile .info-bottom {
+    height: 145px !important;
+    padding: 10px 0 !important;
+    width: 100%;
+}
+
+
+.mobile .board-wrapper {
+    padding: 0;
+}
+.mobile .b-y-cont, .mobile .b-x-cont {
+    display: none;
+}
+
+
+
+.mobile .piece, .mobile .choice {
+    font-size: 10px !important;
+}
+@media only screen and (max-width: 340px) {
+    .mobile .piece, .mobile .choice {
+        font-size: 8px !important;
+    }
+}
+
+
+
+
+/*  emotes and phrases styles  */
+.emotes-cont {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+.emote {
+    position: relative;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    height: 30px;
+    max-width: 150px;
+    user-select: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 60px;
+}
+.emote img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 150%;
+    width: auto;
+}
+
+
+.mobile .emote img {
+    height: 130% !important;
+}
+
+.phrases-cont {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 15px;
+}
+.phrase {
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    max-width: 150px;
+    user-select: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 90px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.emote:active, .phrase:active {
+    border-left-width: 0;
+    border-bottom-width: 0;
+}
+
+
+.message {
+    padding: 1px 8px;
+    animation-name: bounceIn;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 110%;
+    white-space: nowrap;
+    height: 30px;
+}
+.message.emote {
+    width: 60px;
+}
+
+
+
+/*  gameover styles  */
+.gameover {
+    position: absolute;
+    top: calc(50% - 165px);
+    left: calc(50% - 125px);
+    z-index: 3000;
+    background-color: white;
+    padding: 2em;
+    width: calc(250px - 4em);
+    height: calc(330px - 4em);
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: -2px 2px 5px 5px #0000004d;
+    cursor: default !important;
+}
+.gameover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 100px);
+    background-color: grey;
+    width: calc(660px - 2em);
+    height: calc(660px - 2em);
+    border-radius: 50%;
+    z-index: 1;
+}
+.gameover.animateBounceIn {
+    animation-name: bounceIn;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.gameover * {
+    text-align: center;
+    z-index: 2;
+}
+
+.gameover-top {
+    height: 60px;
+    margin-top: -1em;
+}
+.won {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+.by {
+    font-size: 14px;
+    color: white;
+}
+
+.rematch-count {
+    font-size: 14px;
+}
+.rematch {
+    background-color: #8080805e;
+    margin-top: auto;
+    cursor: pointer !important;
+}
+.rematch:active {
+    transform: translateY(4px);
+}
+
+
+
+
+/*  promote choose  */
+.promote-choose {
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    position: absolute;
+    z-index: 2000;
+}
+.choice {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 2px black;
+}
+.choice:hover {
+    background-color: #ffff003b;
+}
+.choice.close {
+    height: fit-content !important;
+    background-color: #838383;
+    padding: 4px 0;
+}
+.choice.close:hover {
+    background-color: #676767;
+}
+
+
+
+/*  animations  */
+@keyframes bounceIn {
+    0%{
+        opacity: 0;
+        transform: scale(0.3) translate3d(0,0,0);
+    }
+    50%{
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+    80%{
+        opacity: 1;
+        transform: scale(0.89);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) translate3d(0,0,0);
+    }
+}
